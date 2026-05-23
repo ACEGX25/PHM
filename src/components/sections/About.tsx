@@ -58,8 +58,8 @@ export default function About() {
   <Vortex
     particleCount={800}
     baseHue={15}
-    baseSpeed={phase === "burst" ? 6 : 0.2}
-    rangeSpeed={phase === "burst" ? 3 : 0.5}
+    baseSpeed={phase === "burst" ? 4 : 0.2}
+    rangeSpeed={phase === "burst" ? 1 : 0.5}
     baseRadius={1.5}
     rangeRadius={2}
     rangeY={600}
