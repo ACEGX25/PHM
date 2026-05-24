@@ -8,6 +8,10 @@ import Hero from "@/components/sections/Hero";
 import Work from "@/components/sections/Work";
 import Skills from "@/components/sections/Skills";
 import About from "@/components/sections/About";
+import Navbar from "@/components/ui/Navbar";
+import Testimonials from "@/components/sections/Testimonials";
+import Footer from "@/components/sections/Footer";
+import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   const signalRef = useRef<HTMLDivElement>(null);
@@ -73,6 +77,7 @@ export default function Home() {
 
   return (
     <main className="bg-space-void">
+      <Navbar/>
       {/* Stars with scroll-driven opacity */}
       <div
         className="fixed inset-0 z-0 pointer-events-none transition-opacity duration-500"
@@ -126,7 +131,9 @@ export default function Home() {
         <div ref={aboutRef}>
           <About />
         </div>
-
+        <Testimonials/>
+        <Contact/>
+        <Footer/>
       </div>
     </main>
   );
