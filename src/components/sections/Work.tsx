@@ -154,6 +154,7 @@ export default function Work() {
 
   return (
     <section
+      id="work"
       ref={sectionRef}
       className="relative w-full"
     >

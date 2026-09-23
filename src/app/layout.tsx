@@ -18,8 +18,8 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PHM — Portfolio",
-  description: "Pranav Hire Mulay · Design & Development",
+  title: "Geetesh Karjavkar — Portfolio",
+  description: "Geetesh Karjavkar · Designer, Developer & Explorer",
 };
 
 export default function RootLayout({

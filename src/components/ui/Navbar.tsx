@@ -5,6 +5,7 @@ const navItems = [
   { name: "MISSIONS", link: "#work" },
   { name: "SYSTEMS", link: "#skills" },
   { name: "BRIEF", link: "#about" },
+  { name: "LOGS", link: "#testimonials" },
   { name: "TRANSMISSION", link: "#contact" },
 ];
 

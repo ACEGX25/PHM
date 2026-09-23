@@ -21,14 +21,20 @@ export default function Footer() {
 
           {/* Right — Nav links */}
           <div className="flex flex-wrap gap-8">
-            {["MISSIONS", "SYSTEMS", "BRIEF", "LOGS", "TRANSMISSION"].map(item => (
-  <Link
-    key={item}
-    href={`#${item.toLowerCase()}`}
-    className="font-mono text-[10px] tracking-[0.3em] text-white/30 hover:text-astrophage-core transition-colors"
-  >
-    {item}
-  </Link>
+            {[
+              { label: "MISSIONS", href: "#work" },
+              { label: "SYSTEMS", href: "#skills" },
+              { label: "BRIEF", href: "#about" },
+              { label: "LOGS", href: "#testimonials" },
+              { label: "TRANSMISSION", href: "#contact" },
+            ].map(item => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="font-mono text-[10px] tracking-[0.3em] text-white/30 hover:text-astrophage-core transition-colors"
+              >
+                {item.label}
+              </Link>
             ))}
           </div>
         </div>

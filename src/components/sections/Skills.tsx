@@ -124,7 +124,7 @@ useEffect(() => {
 }, [gridEl]);
 
 return (
-<section className="relative w-full min-h-screen py-32 px-8 flex flex-col items-center [overflow:clip]">
+<section id="skills" className="relative w-full min-h-screen py-32 px-8 flex flex-col items-center [overflow:clip]">
     {/* Section header */}
     <p className="font-mono text-xs tracking-[0.6em] text-hud-text opacity-60 mb-3 text-center">
       03 · SHIP SYSTEMS

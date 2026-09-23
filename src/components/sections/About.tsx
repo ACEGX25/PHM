@@ -46,6 +46,7 @@ export default function About() {
 
   return (
     <section
+      id="about"
       ref={sectionRef}
       className="relative w-full min-h-screen overflow-hidden"
     >

@@ -122,7 +122,7 @@ useEffect(() => {
 }, []);
 
 return (
-  <section className="relative w-full py-24">
+  <section id="testimonials" className="relative w-full py-24">
     {/* Header */}
     <div className="text-center mb-16 px-8">
       <p className="font-mono text-xs tracking-[0.6em] text-hud-text opacity-60 mb-3">
