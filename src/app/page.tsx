@@ -86,14 +86,16 @@ export default function Home() {
         <StarsBackground className="absolute inset-0" />
       </div>
 
-      <ShootingStars
-        starColor="#c8e000"
-        trailColor="#7ab804"
-        minSpeed={8}
-        maxSpeed={20}
-        minDelay={800}
-        maxDelay={2400}
-      />
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <ShootingStars
+          starColor="#c8e000"
+          trailColor="#7ab804"
+          minSpeed={8}
+          maxSpeed={20}
+          minDelay={800}
+          maxDelay={2400}
+        />
+      </div>
 
       {!preloaderDone && (
         <Preloader onComplete={() => setPreloaderDone(true)} />

@@ -6,29 +6,56 @@ import { gsap } from "@/lib/gsap";
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    if (errorMessage) setErrorMessage("");
   };
 
-  const handleSubmit = async (e: React.MouseEvent) => {
+  const validate = () => {
+    if (!form.name.trim()) {
+      return "ERROR: OPERATOR NAME IDENTIFIER REQUIRED";
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!form.email.trim() || !emailRegex.test(form.email.trim())) {
+      return "ERROR: INVALID SIGNAL FREQUENCY (EMAIL FORMAT)";
+    }
+    if (!form.message.trim() || form.message.trim().length < 5) {
+      return "ERROR: TRANSMISSION CONTENT TOO SHORT (MIN 5 CHARS)";
+    }
+    return null;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const error = validate();
+    if (error) {
+      setErrorMessage(error);
+      setStatus("error");
+      return;
+    }
+
+    setErrorMessage("");
     setStatus("sending");
 
     // Animate send button
     gsap.to(".send-btn", {
-      scale: 0.95,
+      scale: 0.96,
       duration: 0.1,
       yoyo: true,
       repeat: 1,
     });
 
-    // Placeholder — wire to your email service later
+    // Transmission simulation
     setTimeout(() => {
       setStatus("sent");
       setForm({ name: "", email: "", message: "" });
-    }, 1500);
+      setTimeout(() => {
+        setStatus("idle");
+      }, 5000);
+    }, 1200);
   };
 
   return (
@@ -50,6 +77,7 @@ export default function Contact() {
       {/* Form */}
       <form
         ref={formRef}
+        onSubmit={handleSubmit}
         className="w-full max-w-2xl flex flex-col gap-6"
       >
         {/* Name */}
@@ -96,11 +124,21 @@ export default function Contact() {
           />
         </div>
 
+        {/* Error notification */}
+        {errorMessage && (
+          <div className="border border-ir-hot/60 bg-ir-hot/10 px-4 py-2.5 flex items-center gap-3">
+            <span className="font-mono text-xs text-ir-hot animate-pulse">⚠</span>
+            <p className="font-mono text-xs tracking-wider text-ir-hot">
+              {errorMessage}
+            </p>
+          </div>
+        )}
+
         {/* Submit */}
         <button
-          onClick={handleSubmit}
+          type="submit"
           disabled={status === "sending" || status === "sent"}
-          className="send-btn w-full font-mono text-xs tracking-[0.4em] py-4 border transition-colors disabled:opacity-50"
+          className="send-btn w-full font-mono text-xs tracking-[0.4em] py-4 border transition-colors disabled:opacity-50 cursor-pointer"
           style={{
             borderColor: status === "sent" ? "#c8e000" : "rgba(200,224,0,0.4)",
             color: status === "sent" ? "#c8e000" : "rgba(255,255,255,0.8)",
@@ -109,8 +147,8 @@ export default function Contact() {
         >
           {status === "idle" && "TRANSMIT MESSAGE →"}
           {status === "sending" && "TRANSMITTING..."}
-          {status === "sent" && "SIGNAL RECEIVED ✓"}
-          {status === "error" && "TRANSMISSION FAILED — RETRY"}
+          {status === "sent" && "SIGNAL RECEIVED & ACKNOWLEDGED ✓"}
+          {status === "error" && "RETRANSMIT MESSAGE →"}
         </button>
 
         {/* HUD footer */}
